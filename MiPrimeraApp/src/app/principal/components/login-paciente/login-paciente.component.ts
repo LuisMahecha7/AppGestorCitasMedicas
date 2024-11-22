@@ -59,14 +59,14 @@ export class LoginPacienteComponent {
           if (response.status === 'usuario_no_registrado') {
             // Si el usuario no está registrado, preguntar si desea registrarse
             if (confirm('El usuario no está registrado. ¿Deseas registrarlo?')) {
-              this.router.navigate(['/registrar-paciente']); // Redirigir a la página de registro
+              this.router.navigate(['principal/registrar-paciente']); // Redirigir a la página de registro
             }
           } else if (response.status === 'credenciales_incorrectas') {
             // Si la contraseña o el correo son incorrectos
             this.errorMessage = 'Correo electrónico o contraseña incorrectos';
           } else if (response.status === 'exito') {
             // Si el inicio de sesión es exitoso
-            this.router.navigate(['/index-paciente']); // Redirigir a la página principal
+            this.router.navigate(['principal/index-paciente']); // Redirigir a la página principal
           }
         },
         error => {

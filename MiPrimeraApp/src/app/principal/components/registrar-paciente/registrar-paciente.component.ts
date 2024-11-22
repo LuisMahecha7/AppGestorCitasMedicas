@@ -64,7 +64,7 @@ export class RegistrarPacienteComponent {
         if (response.status === 'exito') {
           // Si el registro es exitoso, redirigir a la página de inicio
           alert("Registro Valido")
-          this.router.navigate(['/login-medico']);
+          this.router.navigate(['principal/login-medico']);
         } else {
           // Si ocurre algún otro error
           this.errorMessage = 'Hubo un problema al registrar al médico. Por favor intente nuevamente.';
