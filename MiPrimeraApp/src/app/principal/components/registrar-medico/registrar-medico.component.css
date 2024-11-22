@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   padding-top: 30px;
-  padding-bottom: 30px;
 }
 .popup-container .popup-content {
   width: 50%;
@@ -33,7 +32,7 @@
   font-weight: 400;
   color: #080708;
 }
-.popup-container .popup-content .form-login input {
+.popup-container .popup-content .form-login input, .popup-container .popup-content .form-login select {
   color: #080708;
   width: 80%;
   margin-bottom: 10px;
@@ -61,9 +60,13 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
 }
-.popup-container .popup-content error {
+.popup-container .popup-content .form-login small {
+  color: red;
+  font-weight: 300;
+}
+.popup-container .popup-content .error {
   padding-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   color: #080708;
   font-size: 300;
 }/*# sourceMappingURL=registrar-medico.component.css.map */
