@@ -34,18 +34,19 @@ export class IndexPrincipalComponent {
   redireccionarIniciarSesion(event: Event) {
     event.preventDefault(); // Evita que la página se recargue
     if (this.tipoUsuario === 'PACIENTE') {
-      this.router.navigate(['login-paciente']);
+      this.router.navigate(['principal/login-paciente']); // Cambiar ruta
     } else if (this.tipoUsuario === 'MEDICO') {
-      this.router.navigate(['login-medico']);
+      this.router.navigate(['principal/login-medico']); // Cambiar ruta
     }
   }
-  // Método para redirigir a la página de inicio de sesión
+  //Metodo para redirigir a la pagina de inicio sesión 
   redireccionarRegistro(event: Event) {
     event.preventDefault(); // Evita que la página se recargue
     if (this.tipoUsuario === 'PACIENTE') {
-      this.router.navigate(['registrar-paciente']);
+      this.router.navigate(['principal/registrar-paciente']); // Cambiar ruta
     } else if (this.tipoUsuario === 'MEDICO') {
-      this.router.navigate(['registrar-medico']);
+      this.router.navigate(['principal/registrar-medico']); // Cambiar ruta
     }
   }
+  
 }

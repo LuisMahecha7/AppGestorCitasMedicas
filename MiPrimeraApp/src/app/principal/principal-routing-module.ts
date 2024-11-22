@@ -9,7 +9,7 @@ import { RegistrarPacienteComponent } from './components/registrar-paciente/regi
 
 const routes: Routes = [
   {
-    path: 'principal',
+    path: '',
     component: IndexPrincipalComponent, // Componente principal que tiene el <router-outlet>
     children: [
       { path: 'login-medico', component: LoginMedicoComponent },

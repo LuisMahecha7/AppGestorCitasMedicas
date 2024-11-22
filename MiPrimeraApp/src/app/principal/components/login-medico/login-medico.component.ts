@@ -77,6 +77,6 @@ export class LoginMedicoComponent {
 
   // Método para registrar a un nuevo médico
   private register() {
-    this.router.navigate(['/registrar-medico']); // Redirigir a la página de registro
+    this.router.navigate(['principal/registrar-medico']); // Redirigir a la página de registro
   }
 }

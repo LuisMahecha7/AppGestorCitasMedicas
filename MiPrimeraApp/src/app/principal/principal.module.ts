@@ -8,7 +8,8 @@ import { RegistrarMedicoComponent } from './components/registrar-medico/registra
 import { PrincipalRoutingModule } from './principal-routing-module';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     PrincipalRoutingModule,
@@ -16,7 +17,7 @@ import { PrincipalRoutingModule } from './principal-routing-module';
     LoginPacienteComponent,
     LoginMedicoComponent,
     RegistrarMedicoComponent,
-    RegistrarPacienteComponent // Solo importa MedicoRoutingModule aquí
+    RegistrarPacienteComponent,
   ]
 })
 export class PrincipalModule { }
