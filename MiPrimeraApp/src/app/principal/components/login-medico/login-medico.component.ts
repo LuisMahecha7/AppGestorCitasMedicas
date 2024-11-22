@@ -17,36 +17,40 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class LoginMedicoComponent {
   loginForm: FormGroup;
   errorMessage: string | null = null;
+  submitted = false;
 
   constructor(private router: Router, private http: HttpClient, private fb: FormBuilder) {
     // Crear formulario con validación de correo y contraseña
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]], // Validación del correo electrónico
-      password: ['', Validators.required] // Validación de la contraseña
+      username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]], // Validación del correo electrónico
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]] // Validación de la contraseña
     });
   }
 
   // Método que se ejecuta al enviar el formulario
   onSubmit(isRegister: boolean) {
-    this.errorMessage = null; // Resetear el mensaje de error
-
+    this.errorMessage = null;
+    this.submitted = true;
+    
     if (isRegister) {
-      this.register(); // Llamar al método de registro si el parámetro es verdadero
+      this.register();
     } else {
-      this.login(); // Llamar al método de inicio de sesión
+      if(this.loginForm.invalid){
+
+        this.errorMessage = "Error en los campos, valide la información";
+        return;
+      }
+      else{
+        this.login();
+      }
+      
     }
   }
 
   // Método para manejar el inicio de sesión
   private login() {
+    //Se extren los datos de las entradas de datos.
     const { username, password } = this.loginForm.value;
-
-    // Validación del correo electrónico (aunque se valida con Validators.email en el formulario, la validación es explícita aquí)
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!emailPattern.test(username)) {
-      this.errorMessage = 'Por favor, ingrese un correo electrónico válido.';
-      return;
-    }
 
     // Realizar la solicitud HTTP al backend PHP
     this.http.post('http://localhost/tu-backend/login.php', { username, password })
@@ -62,7 +66,7 @@ export class LoginMedicoComponent {
             this.errorMessage = 'Correo electrónico o contraseña incorrectos';
           } else if (response.status === 'exito') {
             // Si el inicio de sesión es exitoso
-            this.router.navigate(['/index-paciente']); // Redirigir a la página principal
+            this.router.navigate(['/index-medico']); // Redirigir a la página principal
           }
         },
         error => {

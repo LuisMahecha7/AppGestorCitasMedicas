@@ -61,6 +61,10 @@
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
 }
+.popup-container .popup-content .form-login small {
+  color: red;
+  font-weight: 300;
+}
 .popup-container .popup-content .form-register {
   display: flex;
   flex-direction: column;

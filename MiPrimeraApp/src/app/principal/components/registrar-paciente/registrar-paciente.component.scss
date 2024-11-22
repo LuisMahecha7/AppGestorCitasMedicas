@@ -10,7 +10,6 @@ $color-secundario: #D17B0F;
     justify-content: center;
     align-items: center;
     padding-top: 30px;
-    padding-bottom: 30px;
     .popup-content{
         width: 50%;
         display: flex;
@@ -63,11 +62,15 @@ $color-secundario: #D17B0F;
                 -ms-border-radius: 4px;
                 -o-border-radius: 4px;
             }
+            small{
+                color: red;
+                font-weight: 300;
+            }
 
         }
-        error{
+        .error{
             padding-top: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             color: $color-fuente2;
             font-size: 300;
         }
