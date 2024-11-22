@@ -1,0 +1,111 @@
+.popup-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.popup-container .popup-content {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.popup-container .popup-content .buscador {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.popup-container .popup-content .buscador form {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  justify-content: right;
+}
+.popup-container .popup-content .buscador form input {
+  width: 20%;
+  background-color: none;
+  color: #080708;
+  font-weight: 400;
+  font-size: 1rem;
+  padding: 5px;
+  margin-right: 5px;
+  border: 2px solid #D17B0F;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.popup-container .popup-content .buscador form select {
+  width: 10%;
+  background-color: none;
+  color: #080708;
+  font-weight: 400;
+  font-size: 1rem;
+  padding: 5px;
+  margin-right: 5px;
+  border: 2px solid #D17B0F;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.popup-container .cont-tabla {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+.popup-container .cont-tabla table {
+  color: #080708;
+  font-weight: 300;
+  font-size: 1rem;
+}
+.popup-container .cont-tabla table thead tr td {
+  border-bottom: 2px solid #D17B0F;
+  border-top: 2px solid #D17B0F;
+  padding: 5px;
+}
+.popup-container .cont-tabla table tbody tr td {
+  border-bottom: 2px solid #D17B0F;
+  padding: 5px;
+}
+.popup-container .cont-acciones {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 40px 40px 40px;
+}
+.popup-container .cont-acciones .botonesAcciones {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 0px 80px 0px;
+  justify-content: right;
+}
+.popup-container .cont-acciones .botonesAcciones button {
+  color: #F7FBEF;
+  background: #D17B0F;
+  border: none;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}/*# sourceMappingURL=cita-medica.component.css.map */

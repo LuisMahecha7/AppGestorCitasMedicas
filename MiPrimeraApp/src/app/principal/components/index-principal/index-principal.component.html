@@ -1,0 +1,29 @@
+<main class="main">
+  <nav class="cont-navegacion">
+    <div class="cont-menu">
+      <h1>Sistema Gestor de Citas Medicas</h1>
+      <ul class="cont-lista">
+        <div class="paciente">
+          <li><button (click)="toggleTipoInicio('PACIENTE')">Soy PACIENTE</button></li>
+        </div>
+        <div class="tipo-inicio" *ngIf="mostrarTipoInicio">
+          <li><a href="#" (click)="redireccionarIniciarSesion($event)">Iniciar Sesión</a></li>
+          <li><a href="#" (click)="redireccionarRegistro($event)">Registrarse</a></li>
+        </div>
+        <div class="medico">
+          <li><button (click)="toggleTipoInicio('MEDICO')">Soy MEDICO</button></li>
+        </div>
+      </ul>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+  <footer class="cont-footer">
+    <div class="cont-info">
+      <ul>
+        <li><a href="#">Universidad Pedagogica y Tecnologíca de Colombia</a></li>
+        <li><a href="#">Tecnologia en Programación de Sistemas Informáticos</a></li>
+        <li><a href="#">2024</a></li>
+      </ul>
+    </div>
+  </footer>
+</main>

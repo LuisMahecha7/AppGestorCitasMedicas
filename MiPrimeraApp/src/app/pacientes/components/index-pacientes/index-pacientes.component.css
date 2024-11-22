@@ -1,0 +1,125 @@
+.main {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  background: #F7FBEF;
+  display: flex;
+  flex-direction: column;
+}
+.main header {
+  width: 80%;
+  height: auto;
+  position: absolute;
+  right: 0px;
+  border-bottom: 2px solid #D17B0F;
+}
+.main header div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+.main header div .cont-titulo h2 {
+  padding: 15px;
+  font-size: 1.5rem;
+  color: #080708;
+  font-weight: 300;
+}
+.main header div .cont-buscador form input {
+  width: 70%;
+  background: #fff;
+  border: none;
+  border-bottom: 2px solid #D17B0F;
+  font-weight: 300;
+  color: #080708;
+  font-size: 1rem;
+  padding: 5px;
+  margin-right: 5px;
+}
+.main header div .cont-buscador form button {
+  height: 100%;
+  padding: 5px;
+  background: #D17B0F;
+  color: #F7FBEF;
+  border: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.main header div .cont-user {
+  display: flex;
+  justify-content: space-between;
+}
+.main header div .cont-user .cont-identicacionMedico p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #080708;
+}
+.main header div .cont-user .cont-accionesMedico form select {
+  width: 40%;
+}
+.main .cont-navegacion {
+  width: 20%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  background: #55917F;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main .cont-navegacion .cont-logoEmpresa {
+  height: 10%;
+}
+.main .cont-navegacion .cont-menu {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+}
+.main .cont-navegacion .cont-menu .cont-lista {
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.main .cont-navegacion .cont-menu .cont-lista li {
+  width: 100%;
+  height: 10%;
+  border-top: 2px solid #F7FBEF;
+  border-bottom: 2px solid #F7FBEF;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main .cont-navegacion .cont-menu .cont-lista li a {
+  text-align: center;
+  font-weight: 400;
+  color: #F7FBEF;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.main .cont-navegacion .cont-menu .cont-lista li :hover {
+  -webkit-text-decoration: underline #D17B0F;
+          text-decoration: underline #D17B0F;
+}
+.main .cont-navegacion .cont-datos {
+  height: 10%;
+}
+.main .cont-navegacion .cont-datos p {
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: #F7FBEF;
+  text-align: center;
+  padding: 5px;
+}/*# sourceMappingURL=index-pacientes.component.css.map */

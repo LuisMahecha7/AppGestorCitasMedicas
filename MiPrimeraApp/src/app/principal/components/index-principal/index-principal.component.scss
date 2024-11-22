@@ -1,0 +1,107 @@
+$color-nav-footer: #55917F;
+$color-fuente: #F7FBEF;
+$color-boton: #D17B0F;
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100%;
+  .cont-navegacion{
+    background: $color-nav-footer;
+    width: 100%;
+    height: 100%;
+    .cont-menu{
+      display: flex;
+      justify-content: space-around;
+      color: $color-fuente;
+      height: 100%;
+      padding: 30px;
+      h1{
+        font-weight: 300;
+        font-size: 2rem;
+      }
+      .cont-lista{
+        width: 40%;
+        display: flex;
+        justify-content: space-evenly;
+        
+        .medico,.paciente{
+          display: flex;
+          list-style: none;
+          justify-content: center;
+          width: 25%;
+          background: $color-boton;
+          padding: 5px;
+          align-items: center;
+          border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -o-border-radius: 5px;
+          
+          button{
+            background:$color-boton;
+            border: none;
+            font-weight: 600;
+            color: $color-fuente;
+            text-decoration: none;
+            font-size: 1.1rem;
+          }
+        }
+        .tipo-inicio{
+          display: flex;
+          list-style: none;
+          justify-content: center;
+          justify-content: space-between;
+          width: 40%;
+          align-items: center;
+          padding: 5px;
+          a{
+            font-weight: 400;
+            color: $color-fuente;
+            text-decoration: none;
+            margin-right: 5px;
+            margin-left: 5px;
+            font-size: 1.1rem;
+          }
+          :hover{
+            border-bottom: 2px solid #D17B0F;
+          }
+        }
+      }
+    }
+  }
+
+  .cont-footer{
+    position: relative;
+    bottom: 0px;
+    background: #355A4E;
+    display: flex;
+    width: 100%;
+    height: auto;
+    .cont-info{
+      width: 100%;
+      height: auto;
+      padding: 20px;
+      ul{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        list-style: none;
+        padding: 5px;
+        li{
+          padding: 4px;
+
+          a{
+            font-weight: 500;
+            color: $color-fuente;
+            text-decoration: none;
+            font-size: 1.1rem;
+          }
+        }
+        
+      }
+    }
+  }
+}

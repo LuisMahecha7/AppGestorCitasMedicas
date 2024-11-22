@@ -1,0 +1,45 @@
+<main class="main">
+    <header>
+        <div>
+            <div class="cont-titulo">
+                <h2>Sistema Gestor de Citas Medicas</h2>
+            </div>
+            <div class="cont-buscador">
+                <form action="">
+                    <input type="text" value="" id="buscador">
+                    <button>Buscar</button>
+                </form>
+            </div>
+            <div class="cont-user">
+                <div class="cont-identicacionMedico">
+                    <p>Hola, "Aquí va tu Nombre"</p>
+                </div>
+                <div class="cont-accionesMedico">
+                    <form action="">
+                        <select name="" id="">
+                            <option value=""></option>
+                            <option value="">Cerrar Sesión</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <router-outlet></router-outlet>
+    <nav class="cont-navegacion">
+        <div class="cont-logoEmpresa">
+
+        </div>
+        <div class="cont-menu">
+            <ul class="cont-lista">
+                <li><a href="#" (click)="redireccionarCita($event)">Citas Medicas</a></li>
+                <li><a href="#" (click)="redireccionarCuenta($event)">Pacientes</a></li>
+            </ul>
+        </div>
+        <div class="cont-datos">
+            <p>Universidad Pedagógica y Tecnologíca de Colombia</p>
+            <p>2024</p>
+        </div>
+    </nav>
+  </main>
+  

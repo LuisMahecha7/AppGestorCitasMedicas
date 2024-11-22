@@ -1,0 +1,23 @@
+<div class="popup-container">
+  <div class="popup-content">
+    <div class="popup-header">
+      <h2>Iniciar Sesión</h2>
+    </div>
+
+    <form (ngSubmit)="onSubmit(false)" class="form-login" [formGroup]="loginForm">
+      <label for="username">Correo Electronico</label>
+      <input type="text" id="username" formControlName="username" name="username" required>
+    
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" formControlName="password" name="password" required>
+    
+      <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <form (ngSubmit)="onSubmit(true)" class="form-register">
+      <button type="submit">Registrarse</button>
+    </form>
+
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+</div>

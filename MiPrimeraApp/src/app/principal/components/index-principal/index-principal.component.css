@@ -1,0 +1,98 @@
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100%;
+}
+.main .cont-navegacion {
+  background: #55917F;
+  width: 100%;
+  height: 100%;
+}
+.main .cont-navegacion .cont-menu {
+  display: flex;
+  justify-content: space-around;
+  color: #F7FBEF;
+  height: 100%;
+  padding: 30px;
+}
+.main .cont-navegacion .cont-menu h1 {
+  font-weight: 300;
+  font-size: 2rem;
+}
+.main .cont-navegacion .cont-menu .cont-lista {
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.main .cont-navegacion .cont-menu .cont-lista .medico, .main .cont-navegacion .cont-menu .cont-lista .paciente {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  width: 25%;
+  background: #D17B0F;
+  padding: 5px;
+  align-items: center;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.main .cont-navegacion .cont-menu .cont-lista .medico button, .main .cont-navegacion .cont-menu .cont-lista .paciente button {
+  background: #D17B0F;
+  border: none;
+  font-weight: 600;
+  color: #F7FBEF;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+.main .cont-navegacion .cont-menu .cont-lista .tipo-inicio {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  justify-content: space-between;
+  width: 40%;
+  align-items: center;
+  padding: 5px;
+}
+.main .cont-navegacion .cont-menu .cont-lista .tipo-inicio a {
+  font-weight: 400;
+  color: #F7FBEF;
+  text-decoration: none;
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 1.1rem;
+}
+.main .cont-navegacion .cont-menu .cont-lista .tipo-inicio :hover {
+  border-bottom: 2px solid #D17B0F;
+}
+.main .cont-footer {
+  position: relative;
+  bottom: 0px;
+  background: #355A4E;
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+.main .cont-footer .cont-info {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+}
+.main .cont-footer .cont-info ul {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  padding: 5px;
+}
+.main .cont-footer .cont-info ul li {
+  padding: 4px;
+}
+.main .cont-footer .cont-info ul li a {
+  font-weight: 500;
+  color: #F7FBEF;
+  text-decoration: none;
+  font-size: 1.1rem;
+}/*# sourceMappingURL=index-principal.component.css.map */

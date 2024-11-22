@@ -1,0 +1,124 @@
+$color-primario: #55917F;
+$color-fuente: #F7FBEF;
+$color-fuente2: #080708;
+$color-secundario: #D17B0F;
+
+.popup-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    .popup-content{
+        width: 80%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .buscador{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            form{
+                width: 100%;
+                display: flex;
+                padding: 10px;
+                justify-content: right;
+                input{
+                    width: 20%;
+                    background-color: none;
+                    color: $color-fuente2;
+                    font-weight: 400;
+                    font-size: 1rem;
+                    padding: 5px;
+                    margin-right: 5px;
+                    border: 2px solid $color-secundario;
+                    border-radius: 3px;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    -ms-border-radius: 3px;
+                    -o-border-radius: 3px;
+                    }
+                select{
+                    width: 10%;
+                    background-color: none;
+                    color: $color-fuente2;
+                    font-weight: 400;
+                    font-size: 1rem;
+                    padding: 5px;
+                    margin-right: 5px;
+                    border: 2px solid $color-secundario;
+                    border-radius: 3px;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    -ms-border-radius: 3px;
+                    -o-border-radius: 3px;
+                    }
+                }
+            }
+        }
+        .cont-tabla{
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            table{
+                color: $color-fuente2;
+                font-weight: 300;
+                font-size: 1rem;
+                thead{
+                    tr{
+                        td{
+                            border-bottom:2px solid $color-secundario ;
+                            border-top:2px solid $color-secundario ;
+                            padding: 5px;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        td{
+                            border-bottom:2px solid $color-secundario ;
+                            padding: 5px;
+                        }
+                    }
+                }
+            }
+        }
+        .cont-acciones{
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0px 40px 40px 40px;
+            .botonesAcciones{
+                width: 75%;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0px 0px 80px 0px;
+                justify-content: right;
+                button{
+                    color: $color-fuente;
+                    background: $color-secundario;
+                    border: none;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    padding: 5px;
+                    margin-right: 5px;
+                    border-radius: 2px;
+                    -webkit-border-radius: 2px;
+                    -moz-border-radius: 2px;
+                    -ms-border-radius: 2px;
+                    -o-border-radius: 2px;
+                }
+            }
+        }
+    }
