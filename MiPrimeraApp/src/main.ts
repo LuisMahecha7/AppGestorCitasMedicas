@@ -1,6 +1,12 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent, {
+  ...appConfig,
+  providers: [
+    ...(appConfig.providers || []), // Mantén los proveedores existentes (si existen)
+    provideHttpClient(withFetch()) // Agrega la configuración de HttpClient con fetch
+  ],
+}).catch((err) => console.error(err));

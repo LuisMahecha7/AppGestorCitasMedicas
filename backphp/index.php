@@ -1,16 +1,19 @@
 <?php
-include('conexion.php');
+include('./conexion.php');
 require_once './helpers/cors.php';
 require_once './controllers/PacienteController.php';
 
+// Configuración global de CORS
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: X-APIKEY,Origin,X-Requested-With, Content-Type, Accept,Access-Control-Request-Method,Access-Request-Headers,Authorization');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('content-type: application/json; charset=utf-8');
+
+// Manejo de preflight para OPTIONS
 $method = $_SERVER['REQUEST_METHOD'];
 if ($method == 'OPTIONS') {
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Headers: X-APIKEY,Origin,X-Requested-With, Content-Type, Accept,Access-Control-Request-Method,Access-Request-Headers,Authorization');
-    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
-    header('content-type: application/json; charset=utf-8');
-    header('HTTP/1.1 200 OK');
-    die();
+    http_response_code(200);
+    exit;
 }
 
 $json = file_get_contents('php://input');
@@ -18,6 +21,13 @@ $params = json_decode($json, true);
 $controller = new PacienteController();
 
 try {
+    // Mostrar los datos que llegan del frontend (solo en POST)
+    /*if ($method == 'POST') {
+        echo  "<pre>";
+        var_dump($params); // Muestra los datos recibidos
+        echo "</pre>";
+    }*/
+
     switch ($method) {
         case 'GET':
             if (isset($_GET['id'])) {

@@ -1,5 +1,9 @@
 <div class="popup-container">
     <div class="popup-content">
+        <!-- Mensaje de éxito -->
+        <div *ngIf="successMessage" class="alertsuccess" role="alert">
+          {{ successMessage }}
+        </div>
       <div class="popup-header">
         <h2>Registrar Paciente</h2>
       </div>
@@ -25,12 +29,12 @@
         <label for="tipoDocumento">Tipo de Documento</label>
         <select id="tipoDocumento" formControlName="tipoDocumento">
             <option value="">Seleccione</option>
-            <option value="">Tarjeta de Identidad</option>
-            <option value="">Cedula de Ciudadania</option>
-            <option value="">Pasaporte</option>
-            <option value="">Cedula de Extranjeria</option>
-            <option value="">Permiso Especial de Permanencia</option>
-            <option value="">Carnet Diplomatico</option>
+            <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+            <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
+            <option value="Pasaporte">Pasaporte</option>
+            <option value="Cédula de Extranjería">Cédula de Extranjería</option>
+            <option value="Permiso Especial de Permanencia">Permiso Especial de Permanencia</option>
+            <option value="Carnet Diplomático">Carnet Diplomático</option>
         </select>
         <!--Mensajes de Error-->
         <div *ngIf="submitted && registerForm.get('tipoDocumento')?.invalid">
