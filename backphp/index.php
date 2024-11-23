@@ -1,6 +1,5 @@
 <?php
 include('./conexion.php');
-require_once './helpers/cors.php';
 require_once './controllers/PacienteController.php';
 
 // Configuración global de CORS
