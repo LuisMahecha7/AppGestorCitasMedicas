@@ -4,12 +4,17 @@ import { IndexPacientesComponent } from './components/index-pacientes/index-paci
 import { CitaMedicaComponent } from './components/cita-medica/cita-medica.component';
 import { CuentaComponent } from './components/cuenta/cuenta.component';
 
-
-
 const routes: Routes = [
-  { path: '', component: IndexPacientesComponent }, // Ruta principal del módulo Medico
-  { path: 'cita-medica', component: CitaMedicaComponent },
-  { path: 'cuenta', component: CuentaComponent }
+  {
+    path: '',
+    component: IndexPacientesComponent, // Componente principal que tiene el <router-outlet>
+    children: [
+      { path: 'cita-medica', component: CitaMedicaComponent },
+      { path: 'cuenta', component: CuentaComponent },
+      { path: '', redirectTo: '', pathMatch: 'full' } // Ruta hija predeterminada
+    ]
+  },
+  { path: '', redirectTo: 'pacientes', pathMatch: 'full' } // Redirigir a 'principal' como la ruta principal predeterminada
 ];
 
 @NgModule({

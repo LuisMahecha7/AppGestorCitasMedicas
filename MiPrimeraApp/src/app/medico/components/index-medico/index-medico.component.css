@@ -7,26 +7,27 @@
   flex-direction: column;
 }
 .main header {
+  display: flex;
+  flex-direction: column;
   width: 80%;
   height: auto;
   position: absolute;
   right: 0px;
-  border-bottom: 2px solid #D17B0F;
 }
-.main header div {
+.main header .cont-header {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #D17B0F;
 }
-.main header div .cont-titulo h2 {
+.main header .cont-header .cont-titulo h2 {
   padding: 15px;
   font-size: 1.5rem;
   color: #080708;
   font-weight: 300;
 }
-.main header div .cont-buscador form input {
+.main header .cont-header .cont-buscador form input {
   width: 70%;
   background: #fff;
   border: none;
@@ -37,7 +38,7 @@
   padding: 5px;
   margin-right: 5px;
 }
-.main header div .cont-buscador form button {
+.main header .cont-header .cont-buscador form button {
   height: 100%;
   padding: 5px;
   background: #D17B0F;
@@ -49,16 +50,17 @@
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
 }
-.main header div .cont-user {
+.main header .cont-header .cont-user {
   display: flex;
   justify-content: space-between;
 }
-.main header div .cont-user .cont-identicacionMedico p {
+.main header .cont-header .cont-user .cont-identicacionMedico p {
   font-size: 1rem;
   font-weight: 400;
   color: #080708;
+  margin-right: 20px;
 }
-.main header div .cont-user .cont-accionesMedico form select {
+.main header .cont-header .cont-user .cont-accionesMedico form select {
   width: 40%;
 }
 .main .cont-navegacion {

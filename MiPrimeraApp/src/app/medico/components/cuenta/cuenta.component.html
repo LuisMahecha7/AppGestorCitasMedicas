@@ -1,1 +1,126 @@
-<p>cuenta works!</p>
+<div class="popup-container">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2>Datos Personales</h2>
+      </div>
+      <form class="form-login" [formGroup]="registerForm">
+        <div class="cont-inputs">
+            <label for="nombres">Nombres</label>
+            <input type="text" formControlName="nombres">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('nombres')?.invalid">
+            <small *ngIf="registerForm.get('nombres')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="primerApellido">Primer Apellido</label>
+            <input type="text" formControlName="primerApellido">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('primerApellido')?.invalid">
+            <small *ngIf="registerForm.get('primerApellido')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="segundoApellido">Segundo Apellido</label>
+            <input type="text" formControlName="segundoApellido">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('segundoApellido')?.invalid">
+            <small *ngIf="registerForm.get('segundoApellido')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="especialidad">Especialidad</label>
+            <select formControlName="especialidad">
+                <optgroup label="Medicina Interna">
+                    <option value="cardiologia">Cardiología</option>
+                    <option value="nefrologia">Nefrología</option>
+                    <option value="endocrinologia">Endocrinología</option>
+                    <option value="gastroenterologia">Gastroenterología</option>
+                    <option value="hematologia">Hematología</option>   
+                
+                    <option value="pulmonologia">Pulmonología</option>
+                    <option value="reumatologia">Reumatología</option>
+                </optgroup>
+                
+                <optgroup label="Pediatría">
+                    <option value="neonatologia">Neonatología</option>
+                    <option value="pediatria_general">Pediatría General</option>
+                </optgroup>
+                
+                <optgroup label="Ginecología y Obstetricia">
+                    <option value="ginecologia">Ginecología</option>
+                    <option value="obstetricia">Obstetricia</option>
+                </optgroup>
+                
+                <optgroup label="Cirugía">
+                    <option value="cirugia_general">Cirugía General</option>
+                    <option value="cirugia_vascular">Cirugía Vascular</option>
+                    <option value="cirugia_toracica">Cirugía Torácica</option>
+                    <option value="neurocirugia">Neurocirugía</option>
+                    <option value="ortopedia">Ortopedia</option>
+                    <option value="urologia">Urología</option>
+                    <option value="otorrinolaringologia">Otorrinolaringología</option>
+                    <option value="oftalmologia">Oftalmología</option>
+                    <option value="plastica">Cirugía   
+                Plástica</option>
+                </optgroup>
+                
+                <optgroup label="Otras Especialidades">
+                    <option value="anestesiologia">Anestesiología</option>
+                    <option value="radiologia">Radiología</option>
+                    <option value="patologia">Patología</option>
+                    <option value="psiquiatria">Psiquiatría</option>
+                    <option value="neurologia">Neurología</option>
+                    <option value="dermatologia">Dermatología</option>
+                    <option value="medicina_familiar">Medicina Familiar</option>
+                    <option value="medicina_del_trabajo">Medicina del Trabajo</option>
+                </optgroup>
+            </select>
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('especialidad')?.invalid">
+                <small *ngIf="registerForm.get('especialidad')?.hasError('required')">Seleccione una opción.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="celular">Numero Telefónico</label>
+            <input type="text" formControlName="celular" required>
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('celular')?.invalid">
+                <small *ngIf="registerForm.get('celular')?.hasError('required')">El campo es obligatorio.</small>
+                <small *ngIf="registerForm.get('celular')?.hasError('pattern')">El numero celular es invalido (3xxxxxxxxx).</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="direccion">Dirección</label>
+            <input type="text"ormControlName="direccion">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('direccion')?.invalid">
+                <small *ngIf="registerForm.get('direccion')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="email">Correo Electronico</label>
+            <input type="text" formControlName="email">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('email')?.invalid">
+            <small *ngIf="registerForm.get('email')?.hasError('required')">El campo es obligatorio.</small>
+            <small *ngIf="registerForm.get('email')?.hasError('pattern')">Ingrese un correo electronico Valido.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="password">Contraseña:</label>
+            <input type="password" formControlName="password">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('password')?.invalid">
+                <small *ngIf="registerForm.get('password')?.hasError('required')">El campo es obligatorio.</small>
+                <small *ngIf="registerForm.get('password')?.hasError('pattern')">La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.</small>
+            </div>
+        </div>
+        <div class="cont-button">
+            <button type="submit" *ngIf="buttonMod" (click)="toggleTipoBoton('cambiarContraseña')">Cambiar Contraseña</button>
+            <button type="submit" *ngIf="buttonAct" (click)="toggleTipoBoton('actualizar')">Actualizar Información</button>
+        </div>
+      </form>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </div>
+  </div>

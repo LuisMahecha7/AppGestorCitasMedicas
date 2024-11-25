@@ -8,16 +8,19 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class IndexPacientesComponent {
-
+  mostrarContCitaMedica = false;
   constructor(private router: Router) {}
 
   redireccionarCita(event: Event) {
+    
     event.preventDefault(); // Evita que la página se recargue
-      this.router.navigate(['./cita-medica']);
+      this.mostrarContCitaMedica = true;
+      this.router.navigate(['pacientes/cita-medica']);
   }
   redireccionarCuenta(event: Event) {
+    this.mostrarContCitaMedica = false
     event.preventDefault(); // Evita que la página se recargue
-      this.router.navigate(['./cuenta']);
+      this.router.navigate(['pacientes/cuenta']);
   }
 
  }

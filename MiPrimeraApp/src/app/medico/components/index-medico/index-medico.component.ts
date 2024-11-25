@@ -13,19 +13,19 @@ export class IndexMedicoComponent {
 
   redireccionarCita(event: Event) {
     event.preventDefault(); // Evita que la página se recargue
-      this.router.navigate(['./cita-medica']);
+      this.router.navigate(['medico/cita-medica']);
   }
   redireccionarPaciente(event: Event) {
     event.preventDefault(); // Evita que la página se recargue
-      this.router.navigate(['./pacientes']);
+      this.router.navigate(['medico/pacientes']);
   }
   redireccionarReportes(event: Event) {
     event.preventDefault(); // Evita que la página se recargue
-      this.router.navigate(['./reportes']);
+      this.router.navigate(['medico/reportes']);
   }
   redireccionarCuenta(event: Event) {
     event.preventDefault(); // Evita que la página se recargue
-      this.router.navigate(['./cuenta']);
+      this.router.navigate(['medico/cuenta']);
   }
 
  }

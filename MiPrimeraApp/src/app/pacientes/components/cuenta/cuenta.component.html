@@ -1,1 +1,89 @@
-<p>cuenta works!</p>
+<div class="popup-container">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2>Datos Personales</h2>
+      </div>
+      <form class="form-login" [formGroup]="registerForm">
+        <div class="cont-inputs">
+            <label for="nombres">Nombres</label>
+            <input type="text" id="nombres" formControlName="nombres">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('nombres')?.invalid">
+            <small *ngIf="registerForm.get('nombres')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="primerApellido">Primer Apellido</label>
+            <input type="text" id="primerApellido" formControlName="primerApellido">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('primerApellido')?.invalid">
+            <small *ngIf="registerForm.get('primerApellido')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="segundoApellido">Segundo Apellido</label>
+            <input type="text" id="segundoApellido" formControlName="segundoApellido">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('segundoApellido')?.invalid">
+            <small *ngIf="registerForm.get('segundoApellido')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="tipoDocumento">Tipo de Documento</label>
+            <select id="tipoDocumento" formControlName="tipoDocumento">
+                <option value="">Seleccione</option>
+                <option value="TC">Tarjeta de Identidad</option>
+                <option value="CC">Cedula de Ciudadania</option>
+                <option value="PP">Pasaporte</option>
+                <option value="CE">Cedula de Extranjeria</option>
+                <option value="PEP">Permiso Especial de Permanencia</option>
+                <option value="CD">Carnet Diplomatico</option>
+            </select>
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('tipoDocumento')?.invalid">
+            <small *ngIf="registerForm.get('tipoDocumento')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="numDocumento">Numero de Documento</label>
+            <input type="text" formControlName="numDocumento">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('numDocumento')?.invalid">
+            <small *ngIf="registerForm.get('numDocumento')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="celular">Numero Telefónico</label>
+            <input type="text" formControlName="celular">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('celular')?.invalid">
+            <small *ngIf="registerForm.get('celular')?.hasError('required')">El campo es obligatorio.</small>
+            <small *ngIf="registerForm.get('celular')?.hasError('pattern')">El numero celular es invalido (3xxxxxxxxx).</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="email">Correo Electronico</label>
+            <input type="text" formControlName="email">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('email')?.invalid">
+            <small *ngIf="registerForm.get('email')?.hasError('required')">El campo es obligatorio.</small>
+            <small *ngIf="registerForm.get('email')?.hasError('pattern')">Ingrese un correo electronico Valido.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+        <label for="password">Contraseña:</label>
+            <input type="password" formControlName="password">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && registerForm.get('password')?.invalid">
+            <small *ngIf="registerForm.get('password')?.hasError('required')">El campo es obligatorio.</small>
+            <small *ngIf="registerForm.get('password')?.hasError('pattern')">La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.</small>
+            </div>
+        </div>
+        <div class="cont-button">
+            <button type="submit" *ngIf="buttonMod" (click)="toggleTipoBoton('cambiarContraseña')">Cambiar Contraseña</button>
+            <button type="submit" *ngIf="buttonAct" (click)="toggleTipoBoton('actualizar')">Actualizar Información</button>
+        </div>
+      </form>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </div>
+  </div>

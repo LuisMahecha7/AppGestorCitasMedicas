@@ -11,17 +11,18 @@ $color-secundario: #D17B0F;
     flex-direction: column;
     
     header{
+        display: flex;
+        flex-direction: column;
         width: 80%;
         height: auto;
         position: absolute;
         right: 0px;
-        border-bottom:2px solid $color-secundario ;
-        div{
+        .cont-header{
             width: 100%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            border-bottom:2px solid $color-secundario ;
             .cont-titulo{
                 h2{
                     padding: 15px;
@@ -55,10 +56,9 @@ $color-secundario: #D17B0F;
                         -moz-border-radius: 3px;
                         -ms-border-radius: 3px;
                         -o-border-radius: 3px;
-}
+                    }
                 }
             }
-
             .cont-user{
                 display: flex;
                 justify-content: space-between;
@@ -67,6 +67,7 @@ $color-secundario: #D17B0F;
                         font-size: 1rem;
                         font-weight: 400;
                         color: $color-fuente2;
+                        margin-right: 20px;
                     }
                 }
                 .cont-accionesMedico{

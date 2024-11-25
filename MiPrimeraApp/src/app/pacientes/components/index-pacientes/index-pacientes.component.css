@@ -7,26 +7,27 @@
   flex-direction: column;
 }
 .main header {
+  display: flex;
+  flex-direction: column;
   width: 80%;
   height: auto;
   position: absolute;
   right: 0px;
-  border-bottom: 2px solid #D17B0F;
 }
-.main header div {
+.main header .cont-header {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #D17B0F;
 }
-.main header div .cont-titulo h2 {
+.main header .cont-header .cont-titulo h2 {
   padding: 15px;
   font-size: 1.5rem;
   color: #080708;
   font-weight: 300;
 }
-.main header div .cont-buscador form input {
+.main header .cont-header .cont-buscador form input {
   width: 70%;
   background: #fff;
   border: none;
@@ -37,7 +38,7 @@
   padding: 5px;
   margin-right: 5px;
 }
-.main header div .cont-buscador form button {
+.main header .cont-header .cont-buscador form button {
   height: 100%;
   padding: 5px;
   background: #D17B0F;
@@ -49,17 +50,118 @@
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
 }
-.main header div .cont-user {
+.main header .cont-header .cont-user {
   display: flex;
   justify-content: space-between;
 }
-.main header div .cont-user .cont-identicacionMedico p {
+.main header .cont-header .cont-user .cont-identicacionPaciente p {
   font-size: 1rem;
   font-weight: 400;
   color: #080708;
+  margin-right: 20px;
 }
-.main header div .cont-user .cont-accionesMedico form select {
+.main header .cont-header .cont-user .cont-accionesPaciente form select {
   width: 40%;
+}
+.main header .cont-citaMedica {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10%;
+  padding-bottom: 30px;
+}
+.main header .cont-citaMedica .popup-content {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.main header .cont-citaMedica .popup-content .buscador {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.main header .cont-citaMedica .popup-content .buscador form {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  justify-content: right;
+}
+.main header .cont-citaMedica .popup-content .buscador form input {
+  width: 20%;
+  background-color: none;
+  color: #080708;
+  font-weight: 400;
+  font-size: 0.8rem;
+  padding: 5px;
+  margin-right: 5px;
+  border: 2px solid #D17B0F;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.main header .cont-citaMedica .cont-tabla {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+.main header .cont-citaMedica .cont-tabla table {
+  color: #080708;
+  font-weight: 300;
+  font-size: 1rem;
+}
+.main header .cont-citaMedica .cont-tabla table thead tr td {
+  background-color: #D17B0F;
+  border-bottom: 2px solid #D17B0F;
+  border-top: 2px solid #D17B0F;
+  padding: 5px;
+  color: #F7FBEF;
+  text-align: center;
+}
+.main header .cont-citaMedica .cont-tabla table tbody tr td {
+  border-bottom: 2px solid #D17B0F;
+  padding: 5px;
+  text-align: center;
+}
+.main header .cont-citaMedica .cont-acciones {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 40px 40px 40px;
+}
+.main header .cont-citaMedica .cont-acciones .botonesAcciones {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 0px 80px 0px;
+  justify-content: right;
+}
+.main header .cont-citaMedica .cont-acciones .botonesAcciones button {
+  color: #F7FBEF;
+  background: #D17B0F;
+  border: none;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
 }
 .main .cont-navegacion {
   width: 20%;

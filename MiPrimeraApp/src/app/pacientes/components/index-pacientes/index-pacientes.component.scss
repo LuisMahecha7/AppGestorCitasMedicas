@@ -11,17 +11,18 @@ $color-secundario: #D17B0F;
     flex-direction: column;
     
     header{
+        display: flex;
+        flex-direction: column;
         width: 80%;
         height: auto;
         position: absolute;
         right: 0px;
-        border-bottom:2px solid $color-secundario ;
-        div{
+        .cont-header{
             width: 100%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            border-bottom:2px solid $color-secundario ;
             .cont-titulo{
                 h2{
                     padding: 15px;
@@ -55,21 +56,21 @@ $color-secundario: #D17B0F;
                         -moz-border-radius: 3px;
                         -ms-border-radius: 3px;
                         -o-border-radius: 3px;
-}
+                    }
                 }
             }
-
             .cont-user{
                 display: flex;
                 justify-content: space-between;
-                .cont-identicacionMedico{
+                .cont-identicacionPaciente{
                     p{
                         font-size: 1rem;
                         font-weight: 400;
                         color: $color-fuente2;
+                        margin-right: 20px;
                     }
                 }
-                .cont-accionesMedico{
+                .cont-accionesPaciente{
                     form{
                         select{
                             width: 40%;
@@ -78,6 +79,115 @@ $color-secundario: #D17B0F;
                 }
             }
         }
+
+        .cont-citaMedica{
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 10%;
+            padding-bottom: 30px;
+            .popup-content{
+                width: 80%;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                .buscador{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 10px;
+                    form{
+                        width: 100%;
+                        display: flex;
+                        padding: 10px;
+                        justify-content: right;
+                        input{
+                            width: 20%;
+                            background-color: none;
+                            color: $color-fuente2;
+                            font-weight: 400;
+                            font-size: 0.8rem;
+                            padding: 5px;
+                            margin-right: 5px;
+                            border: 2px solid $color-secundario;
+                            border-radius: 3px;
+                            -webkit-border-radius: 3px;
+                            -moz-border-radius: 3px;
+                            -ms-border-radius: 3px;
+                            -o-border-radius: 3px;
+                            }
+                        }
+                    }
+                }
+                .cont-tabla{
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 40px;
+                    table{
+                        color: $color-fuente2;
+                        font-weight: 300;
+                        font-size: 1rem;
+                        thead{
+                            tr{
+                                td{
+                                    background-color: $color-secundario;
+                                    border-bottom:2px solid $color-secundario ;
+                                    border-top:2px solid $color-secundario ;
+                                    padding: 5px;
+                                    color: $color-fuente;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                        tbody{
+                            tr{
+                                td{
+                                    border-bottom:2px solid $color-secundario ;
+                                    padding: 5px;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+                .cont-acciones{
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0px 40px 40px 40px;
+                    .botonesAcciones{
+                        width: 75%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        padding: 0px 0px 80px 0px;
+                        justify-content: right;
+                        button{
+                            color: $color-fuente;
+                            background: $color-secundario;
+                            border: none;
+                            font-size: 1rem;
+                            font-weight: 400;
+                            padding: 5px;
+                            margin-right: 5px;
+                            border-radius: 2px;
+                            -webkit-border-radius: 2px;
+                            -moz-border-radius: 2px;
+                            -ms-border-radius: 2px;
+                            -o-border-radius: 2px;
+                        }
+                    }
+                }
+            }
     }
     .cont-navegacion{
         width: 20%;
@@ -140,6 +250,6 @@ $color-secundario: #D17B0F;
             }
         }
     }
-
+    
  }
 

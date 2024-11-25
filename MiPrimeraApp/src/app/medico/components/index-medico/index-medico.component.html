@@ -1,6 +1,6 @@
 <main class="main">
     <header>
-        <div>
+        <div class="cont-header">
             <div class="cont-titulo">
                 <h2>Sistema Gestor de Citas Medicas</h2>
             </div>
@@ -17,13 +17,15 @@
                 <div class="cont-accionesMedico">
                     <form action="">
                         <select name="" id="">
-                            <option value=""></option>
-                            <option value="">Cerrar Sesión</option>
+                            <option value="">Seleccione</option>
+                            <option value="datosPersonales">Datos Personales</option>
+                            <option value="cerrarSesion">Cerrar Sesión</option>
                         </select>
                     </form>
                 </div>
             </div>
         </div>
+        <router-outlet></router-outlet>
     </header>
     <nav class="cont-navegacion">
         <div class="cont-logoEmpresa">
@@ -42,6 +44,5 @@
             <p>2024</p>
         </div>
     </nav>
-    <router-outlet></router-outlet>
   </main>
   

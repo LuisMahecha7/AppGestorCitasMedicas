@@ -1,0 +1,94 @@
+$color-primario: #55917F;
+$color-fuente: #F7FBEF;
+$color-fuente2: #080708;
+$color-secundario: #D17B0F;
+
+.popup-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    .popup-content{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h2{
+            font-size: 2rem;
+            font-weight: 300;
+            color: $color-secundario;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .form-login{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 90%;
+            align-items: center;
+            justify-content: center;
+            .cont-inputs{
+                width: 40%;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+                padding: 5px;
+                margin: 10px;
+                label{
+                    margin-top: 5px;
+                    font-weight: 400;
+                    color: $color-fuente2;
+                }
+                input,select{
+                    color: $color-fuente2;
+                    width: 100%;
+                    text-align: center;
+                    font-weight: 300;
+                    font-size: 1rem;
+                    padding: 4px;
+                    border: none;
+                    border-bottom: 2px solid #D17B0F;
+                }
+                small{
+                    color: red;
+                    font-weight: 300;
+                }
+            }
+            .cont-button{
+                width: 100%;
+                align-items: center;
+                justify-content: end;
+                display: flex;
+                flex-direction: row;
+                padding: 5px;
+                margin: 10px;
+                button{
+                    background: $color-secundario;
+                    width: 25%;
+                    padding: 5px;
+                    border: 2px solid $color-secundario;
+                    margin-left:10px;
+                    margin-bottom: 10px;
+                    margin-top: 20px;
+                    border-radius: 4px;
+                    color: $color-fuente;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    -webkit-border-radius: 4px;
+                    -moz-border-radius: 4px;
+                    -ms-border-radius: 4px;
+                    -o-border-radius: 4px;
+                }
+            }
+        }
+        .error{
+            padding-top: 10px;
+            margin-bottom: 10px;
+            color: $color-fuente2;
+            font-size: 300;
+        }
+    }
+}
