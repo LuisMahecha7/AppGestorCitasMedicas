@@ -1,5 +1,9 @@
 <div class="popup-container">
     <div class="popup-content">
+      <!-- Mensaje de registro Medico éxito -->
+      <div *ngIf="successMessage" class="alertsuccess" role="alert">
+        {{ successMessage }}
+      </div>
       <div class="popup-header">
         <h2>Registrar Medico</h2>
       </div>

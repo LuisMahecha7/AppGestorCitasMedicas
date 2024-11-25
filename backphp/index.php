@@ -1,6 +1,7 @@
 <?php
 include('./conexion.php');
 require_once './controllers/PacienteController.php';
+require_once './controllers/MedicoController.php';
 
 // Configuración global de CORS
 header('Access-Control-Allow-Origin: *');
@@ -17,32 +18,44 @@ if ($method == 'OPTIONS') {
 
 $json = file_get_contents('php://input');
 $params = json_decode($json, true);
-$controller = new PacienteController();
+
+// Verifica si el parámetro 'tipoUsuario' está presente
+if (!isset($params['tipoUsuario'])) {
+    header('HTTP/1.1 400 Bad Request');
+    echo json_encode(['mensaje' => 'El parámetro "tipoUsuario" es obligatorio.']);
+    exit;
+}
+
+// Determinar el controlador basado en el tipo de usuario
+$tipoUsuario = strtolower($params['tipoUsuario']);
+if ($tipoUsuario === 'paciente') {
+    $controller = new PacienteController();
+} elseif ($tipoUsuario === 'medico') {
+    $controller = new MedicoController();
+} else {
+    header('HTTP/1.1 400 Bad Request');
+    echo json_encode(['mensaje' => 'Tipo de usuario no válido.']);
+    exit;
+}
 
 try {
-    // Mostrar los datos que llegan del frontend (solo en POST)
-    /*if ($method == 'POST') {
-        echo  "<pre>";
-        var_dump($params); // Muestra los datos recibidos
-        echo "</pre>";
-    }*/
 
     switch ($method) {
         case 'GET':
             if (isset($_GET['id'])) {
-                $controller->getPacienteById($_GET['id']);
+                $controller->getById($_GET['id']);
             } else {
-                $controller->getAllPacientes();
+                $controller->getAll();
             }
             break;
 
         case 'POST':
-            $controller->createPaciente($params);
+            $controller->create($params);
             break;
 
         case 'PUT':
             if (isset($_GET['id'])) {
-                $controller->updatePaciente($_GET['id'], $params);
+                $controller->update($_GET['id'], $params);
             } else {
                 header('HTTP/1.1 400 Bad Request');
                 echo json_encode(['mensaje' => 'ID requerido para actualizar el registro.']);
@@ -51,7 +64,7 @@ try {
 
         case 'DELETE':
             if (isset($_GET['id'])) {
-                $controller->deletePaciente($_GET['id']);
+                $controller->delete($_GET['id']);
             } else {
                 header('HTTP/1.1 400 Bad Request');
                 echo json_encode(['mensaje' => 'ID requerido para eliminar el registro.']);
@@ -63,6 +76,7 @@ try {
             echo json_encode(['mensaje' => 'Método no permitido.']);
             break;
     }
+
 } catch (Exception $e) {
     header('HTTP/1.1 500 Internal Server Error');
     echo json_encode(['mensaje' => 'Error en el servidor: ' . $e->getMessage()]);

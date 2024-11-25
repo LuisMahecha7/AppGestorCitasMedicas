@@ -1,6 +1,6 @@
 <?php
 
-class PacienteController {
+class MedicoController {
     private $pdo;
 
     public function __construct() {
@@ -9,20 +9,20 @@ class PacienteController {
 
     public function getAll() {
         try {
-            $sql = $this->pdo->prepare("SELECT * FROM pacientes");
+            $sql = $this->pdo->prepare("SELECT * FROM medicos");
             $sql->execute();
             $result = $sql->fetchAll(PDO::FETCH_ASSOC);
             header("HTTP/1.1 200 OK");
             echo json_encode($result);
         } catch (PDOException $e) {
             header('HTTP/1.1 500 Internal Server Error');
-            echo json_encode(['mensaje' => 'Error al obtener los pacientes: ' . $e->getMessage()]);
+            echo json_encode(['mensaje' => 'Error al obtener los médicos: ' . $e->getMessage()]);
         }
     }
 
     public function getById($id) {
         try {
-            $sql = $this->pdo->prepare("SELECT * FROM pacientes WHERE id = :id");
+            $sql = $this->pdo->prepare("SELECT * FROM medicos WHERE id = :id");
             $sql->bindValue(':id', $id, PDO::PARAM_INT);
             $sql->execute();
             $result = $sql->fetch(PDO::FETCH_ASSOC);
@@ -31,11 +31,11 @@ class PacienteController {
                 echo json_encode($result);
             } else {
                 header('HTTP/1.1 404 Not Found');
-                echo json_encode(['mensaje' => 'Paciente no encontrado.']);
+                echo json_encode(['mensaje' => 'Médico no encontrado.']);
             }
         } catch (PDOException $e) {
             header('HTTP/1.1 500 Internal Server Error');
-            echo json_encode(['mensaje' => 'Error al obtener el paciente: ' . $e->getMessage()]);
+            echo json_encode(['mensaje' => 'Error al obtener el médico: ' . $e->getMessage()]);
         }
     }
 
@@ -55,7 +55,7 @@ class PacienteController {
                 }
             }
             // Validar campos obligatorios
-            $requiredFields = ['nombres', 'primerApellido', 'tipoDocumento', 'numDocumento', 'celular', 'email', 'password'];
+            $requiredFields = ['nombres', 'primerApellido', 'segundoApellido', 'especialidad', 'celular', 'direccion', 'email', 'password'];
             foreach ($requiredFields as $field) {
                 if (!isset($params[$field]) || trim($params[$field]) === '') {
                     header('Content-Type: application/json');
@@ -68,13 +68,12 @@ class PacienteController {
                 }
             }
             // Verificar si el correo ya existe en la base de datos
-            $sql = "SELECT COUNT(*) FROM pacientes WHERE email = :email";
+            $sql = "SELECT COUNT(*) FROM medicos WHERE email = :email";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':email', $params['email']);
             $stmt->execute();
             $emailCount = $stmt->fetchColumn();
             if ($emailCount > 0) {
-                // Si el correo ya existe
                 header('Content-Type: application/json');
                 header('HTTP/1.1 400 Bad Request');
                 echo json_encode([
@@ -83,16 +82,16 @@ class PacienteController {
                 ]);
                 return;
             }
-            // Insertar nuevo paciente
-            $sql = "INSERT INTO pacientes (nombres, primerApellido, segundoApellido, tipoDocumento, numDocumento, celular, email, password)
-                    VALUES (:nombres, :primerApellido, :segundoApellido, :tipoDocumento, :numDocumento, :celular, :email, :password)";
+            // Insertar nuevo médico
+            $sql = "INSERT INTO medicos (nombres, primerApellido, segundoApellido, especialidad, celular, direccion, email, password)
+                    VALUES (:nombres, :primerApellido, :segundoApellido, :especialidad, :celular, :direccion, :email, :password)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':nombres', $params['nombres']);
             $stmt->bindValue(':primerApellido', $params['primerApellido']);
             $stmt->bindValue(':segundoApellido', $params['segundoApellido'] ?? null); // Opcional
-            $stmt->bindValue(':tipoDocumento', $params['tipoDocumento']);
-            $stmt->bindValue(':numDocumento', $params['numDocumento']);
+            $stmt->bindValue(':especialidad', $params['especialidad']);
             $stmt->bindValue(':celular', $params['celular']);
+            $stmt->bindValue(':direccion', $params['direccion']);
             $stmt->bindValue(':email', $params['email']);
             $stmt->bindValue(':password', password_hash($params['password'], PASSWORD_BCRYPT)); // Hasheo de contraseña
             $stmt->execute();
@@ -101,7 +100,7 @@ class PacienteController {
             header('HTTP/1.1 201 Created');
             echo json_encode([
                 'status' => 'success',
-                'message' => 'Paciente Registrado satisfactoriamente.',
+                'message' => 'Médico registrado satisfactoriamente.',
                 'data' => [
                     'id' => $this->pdo->lastInsertId(),
                     'nombres' => $params['nombres'],
@@ -131,55 +130,55 @@ class PacienteController {
     public function update($id, $params) {
         try {
             if (empty($params['nombres']) || empty($params['primerApellido']) ||
-                empty($params['tipoDocumento']) || empty($params['numDocumento']) ||
-                empty($params['celular']) || empty($params['email'])) {
+                empty($params['especialidad']) || empty($params['celular']) ||
+                empty($params['direccion']) || empty($params['email'])) {
                 header('HTTP/1.1 400 Bad Request');
                 echo json_encode(['mensaje' => 'Faltan datos obligatorios.']);
                 return;
             }
 
-            $sql = "UPDATE pacientes 
+            $sql = "UPDATE medicos 
                     SET nombres = :nombres, primerApellido = :primerApellido, segundoApellido = :segundoApellido,
-                        tipoDocumento = :tipoDocumento, numDocumento = :numDocumento,
-                        celular = :celular, email = :email, password = :password
+                        especialidad = :especialidad, celular = :celular, direccion = :direccion, 
+                        email = :email, password = :password
                     WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':nombres', $params['nombres']);
             $stmt->bindValue(':primerApellido', $params['primerApellido']);
             $stmt->bindValue(':segundoApellido', $params['segundoApellido'] ?? null);
-            $stmt->bindValue(':tipoDocumento', $params['tipoDocumento']);
-            $stmt->bindValue(':numDocumento', $params['numDocumento']);
+            $stmt->bindValue(':especialidad', $params['especialidad']);
             $stmt->bindValue(':celular', $params['celular']);
+            $stmt->bindValue(':direccion', $params['direccion']);
             $stmt->bindValue(':email', $params['email']);
             $stmt->bindValue(':password', password_hash($params['password'], PASSWORD_BCRYPT));
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
             header('HTTP/1.1 200 OK');
-            echo json_encode(['mensaje' => 'Paciente actualizado satisfactoriamente.']);
+            echo json_encode(['mensaje' => 'Médico actualizado satisfactoriamente.']);
         } catch (PDOException $e) {
             header('HTTP/1.1 500 Internal Server Error');
-            echo json_encode(['mensaje' => 'Error al actualizar el paciente: ' . $e->getMessage()]);
+            echo json_encode(['mensaje' => 'Error al actualizar el médico: ' . $e->getMessage()]);
         }
     }
 
     public function delete($id) {
         try {
-            $sql = "DELETE FROM pacientes WHERE id = :id";
+            $sql = "DELETE FROM medicos WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
                 header('HTTP/1.1 200 OK');
-                echo json_encode(['mensaje' => 'Paciente eliminado satisfactoriamente.']);
+                echo json_encode(['mensaje' => 'Médico eliminado satisfactoriamente.']);
             } else {
                 header('HTTP/1.1 404 Not Found');
-                echo json_encode(['mensaje' => 'Paciente no encontrado.']);
+                echo json_encode(['mensaje' => 'Médico no encontrado.']);
             }
         } catch (PDOException $e) {
             header('HTTP/1.1 500 Internal Server Error');
-            echo json_encode(['mensaje' => 'Error al eliminar el paciente: ' . $e->getMessage()]);
+            echo json_encode(['mensaje' => 'Error al eliminar el médico: ' . $e->getMessage()]);
         }
     }
 }

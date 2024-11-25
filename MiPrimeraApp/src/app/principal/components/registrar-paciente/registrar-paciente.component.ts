@@ -27,11 +27,9 @@ export class RegistrarPacienteComponent {
       segundoApellido: ['', [Validators.required]],
       tipoDocumento: ['', Validators.required],
       numDocumento: ['', Validators.required],
-      //Valida las caracteristicas del celular con expresiones regulares
+      //Valida caracteristicas de celular, correo y contraseña, con expresiones regulares
       celular: ['', [Validators.required, Validators.pattern(/^3\d{9}$/)]],
-      //Valida las caracteristicas del correo con expresiones regulares
       email: ['', [Validators.required ,Validators.pattern(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]],
-      //Valida las caracteristicas de la contraseña con expresiones regulares
       //password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
       password: ['', [Validators.required]]
     });
@@ -53,17 +51,21 @@ export class RegistrarPacienteComponent {
   private register() {
     const { nombres, primerApellido, segundoApellido, tipoDocumento, numDocumento, celular, email, password } = this.registerForm.value;
 
-    this.http.post('http://localhost/PGestorCMedicas/backphp/index.php',
-      { nombres, primerApellido, segundoApellido, tipoDocumento, numDocumento, celular, email, password },
-      { observe: 'response' } // Esto incluye los headers en la respuesta
+    const requestData = {
+      nombres, primerApellido, segundoApellido, tipoDocumento,
+      numDocumento, celular, email, password, tipoUsuario: 'paciente'
+    };
+    console.log('Valores enviados al backend:', requestData);
+    this.http.post('http://localhost/PGestorCMedicas/backphp/index.php',requestData,
+      { observe: 'response', headers: { 'Content-Type': 'application/json' } } // Esto incluye los headers en la respuesta
     ).subscribe(
       (response) => {
-        // Mostrar los valores de los encabezados en consola
+        // Mostrar los valores de los encabezados en consola xra debug(no dejar visible en consola)
         console.log('Encabezados de la respuesta:', response.headers.keys());
         console.log('Content-Type:', response.headers.get('Content-Type'));
         console.log('Status Code:', response.status);
 
-        // Manejo de la respuesta en JSON
+        // Manejo de la respuesta JSON
         const responseBody: any = response.body;
         console.log('Respuesta del servidor:', responseBody);
 
@@ -83,11 +85,8 @@ export class RegistrarPacienteComponent {
           this.errorMessage = error.error?.message || 'Correo existente en la base de datos';
         } else {
           // Otros errores genéricos
-          this.errorMessage = error.error?.message || 'Ocurrió un error al procesar su solicitud. Intente nuevamentii.';
+          this.errorMessage = error.error?.message || 'Ocurrió un error al procesar su solicitud. Intente nuevamente.';
         }
-
-        // Mostrar el mensaje de error al usuario-debug
-        //alert(this.errorMessage);
       }
     );
   }
