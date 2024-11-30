@@ -1,0 +1,118 @@
+<div class="popup-container">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2>Agendar Cita</h2>
+      </div>
+      <form class="form-login" [formGroup]="agendarCitaForm">
+        <div class="cont-inputs">
+            <label for="especialidad">Especialidad</label>
+            <select formControlName="especialidad">
+                <optgroup label="Medicina Interna">
+                    <option value="cardiologia">Cardiología</option>
+                    <option value="nefrologia">Nefrología</option>
+                    <option value="endocrinologia">Endocrinología</option>
+                    <option value="gastroenterologia">Gastroenterología</option>
+                    <option value="hematologia">Hematología</option>   
+                
+                    <option value="pulmonologia">Pulmonología</option>
+                    <option value="reumatologia">Reumatología</option>
+                </optgroup>
+                
+                <optgroup label="Pediatría">
+                    <option value="neonatologia">Neonatología</option>
+                    <option value="pediatria_general">Pediatría General</option>
+                </optgroup>
+                
+                <optgroup label="Ginecología y Obstetricia">
+                    <option value="ginecologia">Ginecología</option>
+                    <option value="obstetricia">Obstetricia</option>
+                </optgroup>
+                
+                <optgroup label="Cirugía">
+                    <option value="cirugia_general">Cirugía General</option>
+                    <option value="cirugia_vascular">Cirugía Vascular</option>
+                    <option value="cirugia_toracica">Cirugía Torácica</option>
+                    <option value="neurocirugia">Neurocirugía</option>
+                    <option value="ortopedia">Ortopedia</option>
+                    <option value="urologia">Urología</option>
+                    <option value="otorrinolaringologia">Otorrinolaringología</option>
+                    <option value="oftalmologia">Oftalmología</option>
+                    <option value="plastica">Cirugía   
+                Plástica</option>
+                </optgroup>
+                
+                <optgroup label="Otras Especialidades">
+                    <option value="anestesiologia">Anestesiología</option>
+                    <option value="radiologia">Radiología</option>
+                    <option value="patologia">Patología</option>
+                    <option value="psiquiatria">Psiquiatría</option>
+                    <option value="neurologia">Neurología</option>
+                    <option value="dermatologia">Dermatología</option>
+                    <option value="medicina_familiar">Medicina Familiar</option>
+                    <option value="medicina_del_trabajo">Medicina del Trabajo</option>
+                </optgroup>
+            </select>
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && agendarCitaForm.get('especialidad')?.invalid">
+                <small *ngIf="agendarCitaForm.get('especialidad')?.hasError('required')">Seleccione una opción.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="motivoCita">Motivo de la Cita</label>
+            <select formControlName="motivoCita">
+                <option value="">Seleccione</option>
+                <option value="sintomasEnfermedades">Sintomas o Enfermedad</option>
+                <option value="prevencion">Prevención</option>
+                <option value="control">Control</option>
+                <option value="consulta">Consulta</option>
+            </select>
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && agendarCitaForm.get('motivoCita')?.invalid">
+            <small *ngIf="agendarCitaForm.get('motivoCita')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs descripcion">
+            <label for="descripcionMotivo">Descripción</label>
+            <input type="" formControlName="descripcionMotivo">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && agendarCitaForm.get('descripcionMotivo')?.invalid">
+            <small *ngIf="agendarCitaForm.get('descripcionMotivo')?.hasError('required')">El campo es obligatorio.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="horaCita">Hora Cita Medica</label>
+            <input type="time" formControlName="horaCita">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && agendarCitaForm.get('horaCita')?.invalid">
+            <small *ngIf="agendarCitaForm.get('horaCita')?.hasError('required')">El campo es obligatorio.</small>
+            <small *ngIf="agendarCitaForm.get('horaCita')?.hasError('pattern')">Debe seleccionar una hora.</small>
+            </div>
+        </div>
+        <div class="cont-inputs">
+            <label for="fechaCita">Fecha Cita Medica</label>
+            <input type="date" formControlName="fechaCita">
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && agendarCitaForm.get('fechaCita')?.invalid">
+            <small *ngIf="agendarCitaForm.get('fechaCita')?.hasError('required')">El campo es obligatorio.</small>
+            <small *ngIf="agendarCitaForm.get('fechaCita')?.hasError('pattern')">Debe seleccionar una fecha.</small>
+            </div>
+        </div>
+        <div class="cont-inputs medico">
+        <label for="medico">Medico:</label>
+            <select type="medico" formControlName="medico">
+             <!-- Se carga por medio de peticion los medicos disponibles-->
+             <option value="">Seleccione.</option>
+            </select>
+            <!--Mensajes de Error-->
+            <div *ngIf="submitted && agendarCitaForm.get('medico')?.invalid">
+            <small *ngIf="agendarCitaForm.get('medico')?.hasError('required')">El campo es obligatorio.</small>
+            <small *ngIf="agendarCitaForm.get('medico')?.hasError('pattern')">No hay medicos registrados en esta especialidad.</small>
+            </div>
+        </div>
+        <div class="cont-button">
+            <button type="submit">Actualizar Información</button>
+        </div>
+      </form>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </div>
+  </div>

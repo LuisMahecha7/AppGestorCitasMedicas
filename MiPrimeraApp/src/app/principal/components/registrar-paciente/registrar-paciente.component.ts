@@ -30,8 +30,8 @@ export class RegistrarPacienteComponent {
       //Valida caracteristicas de celular, correo y contraseña, con expresiones regulares
       celular: ['', [Validators.required, Validators.pattern(/^3\d{9}$/)]],
       email: ['', [Validators.required ,Validators.pattern(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]],
-      //password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
-      password: ['', [Validators.required]]
+      //Valida las caracteristicas de la contraseña con expresiones regulares
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]]
     });
   }
 

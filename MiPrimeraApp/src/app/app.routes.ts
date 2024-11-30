@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 // Define las rutas
 export const appRoutes: Routes = [
-  { path: '', redirectTo: '/medico', pathMatch: 'full' }, // Ruta predeterminada
+  { path: '', redirectTo: '/principal', pathMatch: 'full' }, // Ruta predeterminada
   
   {
     path: 'medico',
