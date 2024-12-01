@@ -1,15 +1,18 @@
 <div class="popup-container">
     <div class="popup-content">
+      <div *ngIf="successMessage" class="alertsuccess" role="alert">
+        {{ successMessage }}
+      </div>
       <div class="popup-header">
         <h2>Iniciar Sesión Medicos</h2>
       </div>
   
       <form (ngSubmit)="onSubmit(false)" class="form-login" [formGroup]="loginForm">
-        <label for="username">Correo Electronico</label>
-        <input type="text" id="username" formControlName="username">
-        <div *ngIf="submitted && loginForm.get('username')?.invalid">
-          <small *ngIf="loginForm.get('username')?.hasError('required')">El campo es obligatorio.</small>
-          <small *ngIf="loginForm.get('username')?.hasError('pattern')">Ingrese un correo electronico Valido.</small>
+        <label for="email">Correo Electronico</label>
+        <input type="text" id="email" formControlName="email">
+        <div *ngIf="submitted && loginForm.get('email')?.invalid">
+          <small *ngIf="loginForm.get('email')?.hasError('required')">El campo es obligatorio.</small>
+          <small *ngIf="loginForm.get('email')?.hasError('pattern')">Ingrese un correo electronico Valido.</small>
         </div>
         <label for="password">Contraseña:</label>
         <input type="password" id="password" formControlName="password">

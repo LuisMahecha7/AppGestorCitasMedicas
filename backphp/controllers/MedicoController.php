@@ -39,9 +39,55 @@ class MedicoController {
         }
     }
 
+    public function login($email, $password) {
+        try {
+            // Validar que los campos no estén vacíos
+            if (trim($email) === '' || trim($password) === '') {
+                header('HTTP/1.1 400 Bad Request');
+                echo json_encode(['mensaje' => 'Email y contraseña son obligatorios.']);
+                return;
+            }
+
+            // Verifica si un correo existe en la Db
+            $sql = "SELECT id, nombres, email, password FROM medicos WHERE email = :email";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':email', $email);
+            $stmt->execute();
+            $medico = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$medico) {
+                // Si no se encuentra el correo
+                header('HTTP/1.1 404 Not Found');
+                echo json_encode(['mensaje' => 'Verifique la información, no hay registro del correo ingresado.']);
+                return;
+            }
+
+            // Verificar la contraseña
+            if (!password_verify($password, $medico['password'])) {
+                header('HTTP/1.1 401 Unauthorized');
+                echo json_encode(['mensaje' => 'Verifique la información ingresada, contraseña incorrecta.']);
+                return;
+            }
+
+            // Si las credenciales son correctas
+            header('HTTP/1.1 200 OK');
+            echo json_encode([
+                'mensaje' => 'Inicio de sesión exitoso.',
+                'data' => [
+                    'id' => $medico['id'],
+                    'nombres' => $medico['nombres'],
+                    'email' => $medico['email']
+                ]
+            ]);
+        } catch (PDOException $e) {
+            header('HTTP/1.1 500 Internal Server Error');
+            echo json_encode(['mensaje' => 'Error en el servidor: ' . $e->getMessage()]);
+        }
+    }
+
     public function create($params) {
         try {
-            // Decodificar JSON si es necesario
+            // Decodifica JSON de ser necesario
             if (is_string($params)) {
                 $params = json_decode($params, true);
                 if (json_last_error() !== JSON_ERROR_NONE) {
@@ -54,7 +100,7 @@ class MedicoController {
                 return;
                 }
             }
-            // Validar campos obligatorios
+            // Valida campos obligatorios
             $requiredFields = ['nombres', 'primerApellido', 'segundoApellido', 'especialidad', 'celular', 'direccion', 'email', 'password'];
             foreach ($requiredFields as $field) {
                 if (!isset($params[$field]) || trim($params[$field]) === '') {
@@ -67,7 +113,7 @@ class MedicoController {
                 return;
                 }
             }
-            // Verificar si el correo ya existe en la base de datos
+            // Verifica si el correo ya existe en la base de datos
             $sql = "SELECT COUNT(*) FROM medicos WHERE email = :email";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':email', $params['email']);
@@ -88,7 +134,7 @@ class MedicoController {
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':nombres', $params['nombres']);
             $stmt->bindValue(':primerApellido', $params['primerApellido']);
-            $stmt->bindValue(':segundoApellido', $params['segundoApellido'] ?? null); // Opcional
+            $stmt->bindValue(':segundoApellido', $params['segundoApellido'] ?? null); // Opcional. Verificar funcionalidad para implementar en los demas campos.
             $stmt->bindValue(':especialidad', $params['especialidad']);
             $stmt->bindValue(':celular', $params['celular']);
             $stmt->bindValue(':direccion', $params['direccion']);

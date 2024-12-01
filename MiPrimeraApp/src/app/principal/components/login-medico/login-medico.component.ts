@@ -17,12 +17,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class LoginMedicoComponent {
   loginForm: FormGroup;
   errorMessage: string | null = null;
+  successMessage: string | null = null;
   submitted = false;
 
   constructor(private router: Router, private http: HttpClient, private fb: FormBuilder) {
     // Crear formulario con validación de correo y contraseña
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]], // Validación del correo electrónico
+      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]], // Validación del correo electrónico
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]] // Validación de la contraseña
     });
   }
@@ -43,40 +44,50 @@ export class LoginMedicoComponent {
       else{
         this.login();
       }
-      
     }
   }
 
-  // Método para manejar el inicio de sesión
+  // Función para manejar el inicio de sesión
   private login() {
-    //Se extren los datos de las entradas de datos.
-    const { username, password } = this.loginForm.value;
+    const { email, password } = this.loginForm.value;
+    const requestdata = { email, password, tipoUsuario: 'medico', accion: 'login' };
 
-    // Realizar la solicitud HTTP al backend PHP
-    this.http.post('http://localhost/tu-backend/login.php', { username, password })
-      .subscribe(
-        (response: any) => {
-          if (response.status === 'usuario_no_registrado') {
-            // Si el usuario no está registrado, preguntar si desea registrarse
-            if (confirm('El usuario no está registrado. ¿Deseas registrarlo?')) {
-              this.router.navigate(['principal/registrar-medico']); // Redirigir a la página de registro
-            }
-          } else if (response.status === 'credenciales_incorrectas') {
-            // Si la contraseña o el correo son incorrectos
-            this.errorMessage = 'Correo electrónico o contraseña incorrectos';
-          } else if (response.status === 'exito') {
-            // Si el inicio de sesión es exitoso
-            this.router.navigate(['principal/index-medico']); // Redirigir a la página principal
-          }
-        },
-        error => {
-          this.errorMessage = 'Hubo un error al intentar iniciar sesión, por favor intente nuevamente.';
+    this.http.post('http://localhost/PGestorCMedicas/backphp/index.php', requestdata,
+      { observe: 'response', headers: { 'Content-Type': 'application/json' } }
+    ).subscribe(
+      (response: any) => {
+      console.log('Status Codeee:', response.status);
+
+      const responseBody: any = response.body;
+      console.log('Respuesta del servidor:', responseBody);
+        console.log('This is response.statusText', response.statusText);
+        if (response.status === 200 && response.statusText === 'OK') {
+          this.successMessage = responseBody.mensaje || 'Login satisfactorio.'
+          setTimeout(() => {
+            this.router.navigate(['medico']);
+          }, 3000);
         }
-      );
+      },
+      error => {
+        const backendError = error.error || {};
+        const backendMessage = backendError.mensaje || backendError.message || 'Error desconocido';
+
+        if (error.status === 404 && error.statusText === 'Not Found') {
+          this.errorMessage = backendMessage || 'Correo electrónico no registrado.';
+          if (confirm('El usuario no está registrado. ¿Deseas registrarlo?')) {//reemplazar por css y js
+            this.router.navigate(['principal/registrar-medico']);
+          }
+        } else if (error.status === 401 && error.statusText === 'Unauthorized') {
+          this.errorMessage = backendMessage || 'Contraseña incorrecta.';
+        } else {
+          this.errorMessage = backendMessage || 'Ocurrió un error al procesar su solicitud. Intente nuevamente.';
+        }
+      }
+    );
   }
 
-  // Método para registrar a un nuevo médico
+  // Método para registrar un nuevo médico
   private register() {
-    this.router.navigate(['principal/registrar-medico']); // Redirigir a la página de registro
+    this.router.navigate(['principal/registrar-medico']); // Redirigir a página de registro
   }
 }

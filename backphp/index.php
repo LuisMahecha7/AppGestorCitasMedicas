@@ -50,7 +50,14 @@ try {
             break;
 
         case 'POST':
-            $controller->create($params);
+            if (isset($params['accion']) && $params['accion'] === 'login') {
+                $email = $params['email'] ?? null;
+                $password = $params['password'] ?? null;
+
+                $controller->login($email, $password);
+            } else {
+                $controller->create($params);
+            }
             break;
 
         case 'PUT':
