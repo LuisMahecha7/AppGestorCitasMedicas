@@ -61,8 +61,7 @@
                     <option value="urologia">Urología</option>
                     <option value="otorrinolaringologia">Otorrinolaringología</option>
                     <option value="oftalmologia">Oftalmología</option>
-                    <option value="plastica">Cirugía   
-                Plástica</option>
+                    <option value="plastica">Cirugía Plástica</option>
                 </optgroup>
                 
                 <optgroup label="Otras Especialidades">
@@ -92,7 +91,7 @@
         </div>
         <div class="cont-inputs">
             <label for="direccion">Dirección</label>
-            <input type="text"ormControlName="direccion">
+            <input type="text"formControlName="direccion">
             <!--Mensajes de Error-->
             <div *ngIf="submitted && registerForm.get('direccion')?.invalid">
                 <small *ngIf="registerForm.get('direccion')?.hasError('required')">El campo es obligatorio.</small>

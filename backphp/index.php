@@ -20,14 +20,25 @@ $json = file_get_contents('php://input');
 $params = json_decode($json, true);
 
 // Verifica si el parámetro 'tipoUsuario' está presente
-if (!isset($params['tipoUsuario'])) {
-    header('HTTP/1.1 400 Bad Request');
-    echo json_encode(['mensaje' => 'El parámetro "tipoUsuario" es obligatorio.']);
-    exit;
+if ($method === 'GET') {
+    // En una solicitud GET, verifica si el parámetro viene en la URL
+    if (!isset($_GET['tipoUsuario'])) {
+        header('HTTP/1.1 400 Bad Request');
+        echo json_encode(['mensaje' => 'El parámetro "tipoUsuario" es obligatorio.']);
+        exit;
+    }
+    $tipoUsuario = strtolower($_GET['tipoUsuario']);
+} else {
+    // En otras solicitudes, verifica si el parámetro está en el cuerpo de la solicitud
+    if (!isset($params['tipoUsuario'])) {
+        header('HTTP/1.1 400 Bad Request');
+        echo json_encode(['mensaje' => 'El parámetro "tipoUsuario" es obligatorio.']);
+        exit;
+    }
+    $tipoUsuario = strtolower($params['tipoUsuario']);
 }
 
 // Determinar el controlador basado en el tipo de usuario
-$tipoUsuario = strtolower($params['tipoUsuario']);
 if ($tipoUsuario === 'paciente') {
     $controller = new PacienteController();
 } elseif ($tipoUsuario === 'medico') {
@@ -43,9 +54,17 @@ try {
     switch ($method) {
         case 'GET':
             if (isset($_GET['id'])) {
-                $controller->getById($_GET['id']);
+                if ($tipoUsuario === 'paciente') {
+                    $controller->getById($_GET['id']);
+                } elseif ($tipoUsuario === 'medico') {
+                    $controller->getById($_GET['id']);
+                }
             } else {
-                $controller->getAll();
+                if ($tipoUsuario === 'paciente') {
+                    $controller->getAll();
+                } elseif ($tipoUsuario === 'medico') {
+                    $controller->getAll();
+                }
             }
             break;
 

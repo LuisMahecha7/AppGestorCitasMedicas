@@ -30,8 +30,7 @@ export class RegistrarMedicoComponent {
       celular: ['', [Validators.required, Validators.pattern(/^3\d{9}$/)]],
       direccion: ['', [Validators.required]],
       email: ['', [Validators.required ,Validators.pattern(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]],
-      //password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]]
     });
   }
 
@@ -55,20 +54,12 @@ export class RegistrarMedicoComponent {
       nombres, primerApellido, segundoApellido, especialidad, celular,
       direccion, email, password, tipoUsuario: 'medico'
     };
-    console.log('Data enviada al backend:', requestData);
     this.http.post('http://localhost/PGestorCMedicas/backphp/index.php',requestData,
       { observe: 'response', headers: { 'Content-Type': 'application/json' } } // Esto incluye los headers en la respuesta
     ).subscribe(
       (response) => {
-        // Mostrar los valores de los encabezados en consola, para debug(ocultar.)
-        console.log('Encabezados de la respuesta:', response.headers.keys());
-        console.log('Content-Type:', response.headers.get('Content-Type'));
-        console.log('Status Code:', response.status);
-
         // Manejo de la respuesta JSON
         const responseBody: any = response.body;
-        console.log('Respuesta del servidor:', responseBody);
-
         if (response.status === 201 && responseBody.status === 'success') {
           // Registro exitoso
           this.successMessage = responseBody.message || 'Registro exitoso.';

@@ -56,12 +56,14 @@ export class LoginMedicoComponent {
       { observe: 'response', headers: { 'Content-Type': 'application/json' } }
     ).subscribe(
       (response: any) => {
-      console.log('Status Codeee:', response.status);
+        const responseBody: any = response.body;
+        const id = responseBody.data.id;
+        const username = responseBody.data.nombres;
 
-      const responseBody: any = response.body;
-      console.log('Respuesta del servidor:', responseBody);
-        console.log('This is response.statusText', response.statusText);
         if (response.status === 200 && response.statusText === 'OK') {
+          // Guardar ID del usuario en localStorage
+          localStorage.setItem('userId', id.toString());
+
           this.successMessage = responseBody.mensaje || 'Login satisfactorio.'
           setTimeout(() => {
             this.router.navigate(['medico']);
@@ -85,7 +87,6 @@ export class LoginMedicoComponent {
       }
     );
   }
-
   // Método para registrar un nuevo médico
   private register() {
     this.router.navigate(['principal/registrar-medico']); // Redirigir a página de registro
