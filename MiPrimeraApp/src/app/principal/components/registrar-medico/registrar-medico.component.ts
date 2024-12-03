@@ -54,7 +54,7 @@ export class RegistrarMedicoComponent {
       nombres, primerApellido, segundoApellido, especialidad, celular,
       direccion, email, password, tipoUsuario: 'medico'
     };
-    this.http.post('http://localhost/PGestorCMedicas/backphp/index.php',requestData,
+    this.http.post('http://localhost/AppGestorCitasMedicas/backphp/index.php',requestData,
       { observe: 'response', headers: { 'Content-Type': 'application/json' } } // Esto incluye los headers en la respuesta
     ).subscribe(
       (response) => {

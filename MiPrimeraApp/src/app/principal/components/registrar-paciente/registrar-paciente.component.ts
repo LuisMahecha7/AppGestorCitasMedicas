@@ -56,7 +56,7 @@ export class RegistrarPacienteComponent {
       numDocumento, celular, email, password, tipoUsuario: 'paciente'
     };
     console.log('Valores enviados al backend:', requestData);
-    this.http.post('http://localhost/PGestorCMedicas/backphp/index.php',requestData,
+    this.http.post('http://localhost/AppGestorCitasMedicas/backphp/index.php',requestData,
       { observe: 'response', headers: { 'Content-Type': 'application/json' } } // Esto incluye los headers en la respuesta
     ).subscribe(
       (response) => {

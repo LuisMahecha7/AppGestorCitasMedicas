@@ -60,6 +60,12 @@ export class CuentaComponent {
 
   //se recupera id guardado en inicio de sesión en localstorage
   private modificarMedico() {
+    // Verificar que localStorage esté disponible antes de usarlo
+    if (typeof window === 'undefined' || !window.localStorage) {
+      console.error('localStorage no está disponible en este entorno.');
+      return;
+    }
+
     const storedId = localStorage.getItem('userId');
     const tipoUsuario = 'medico';
 
@@ -67,7 +73,7 @@ export class CuentaComponent {
       console.error('No se encontró un ID en localStorage.');
       return;
     }
-    const url = `http://localhost/PGestorCMedicas/backphp/index.php?id=${storedId}&tipoUsuario=${tipoUsuario}`;
+    const url = `http://localhost/AppGestorCitasMedicas/backphp/index.php?id=${storedId}&tipoUsuario=${tipoUsuario}`;
   
     this.http.get(url, { observe: 'response' as 'body' }).subscribe(
       (response: any) => {

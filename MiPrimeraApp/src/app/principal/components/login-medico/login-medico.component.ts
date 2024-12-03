@@ -52,7 +52,7 @@ export class LoginMedicoComponent {
     const { email, password } = this.loginForm.value;
     const requestdata = { email, password, tipoUsuario: 'medico', accion: 'login' };
 
-    this.http.post('http://localhost/PGestorCMedicas/backphp/index.php', requestdata,
+    this.http.post('http://localhost/AppGestorCitasMedicas/backphp/index.php', requestdata,
       { observe: 'response', headers: { 'Content-Type': 'application/json' } }
     ).subscribe(
       (response: any) => {
